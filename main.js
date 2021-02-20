@@ -131,3 +131,28 @@ const combined = ages
   .sort((a, b) => a - b)
   .reduce((a, b) => a + b, 0);
 console.log(combined);
+///////////////////////////////////////////////////////////////////////
+//Anagram validation
+//create a function which receives two different strings and return true if they are anagrms and false otherwise
+
+function validAnagram(ana1, ana2) {
+  if (ana1.length !== ana2.length) {
+    return false;
+  }
+  let lookup = {};
+
+  for (let i = 0; i < ana1.length; i++) {
+    let letter = ana1[i];
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+  for (let i = 0; i < ana2.length; i++) {
+    let letter = ana2[i];
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
+  return true;
+}
+console.log(validAnagram("care", "race"));
